@@ -6,7 +6,7 @@ public class CountingSort extends AlgoritmeBase {
 	private boolean isInitialized = false;
 	
 	public CountingSort(int[] array) {
-		super(array);
+		super(array, "Counting Sort");
 	}
 	
 	public void initialise(int high, int low) {

@@ -1,13 +1,19 @@
 package oefeningen.sorteeralgoritmes;
 
-public class AlgoritmeBase {
+public abstract class AlgoritmeBase {
 	
 	int compares = 0;
 	int exchanges = 0;
 	int[] teSorteren;
+	private final String name;
 	
-	public AlgoritmeBase(int[] teSorteren) {
+	public AlgoritmeBase(int[] teSorteren, String name) {
 		this.teSorteren = teSorteren;
+		this.name = name;
+	}
+
+	public String getName() {
+		return this.name;
 	}
 
 	public void toString(int[] array) {
@@ -54,9 +60,7 @@ public class AlgoritmeBase {
 		return this.exchanges;
 	}
 	
-	public void sorteer() {
-		
-	}
+	public abstract void sorteer();
 	
 	public void reset(int[] teSorteren) {
 		this.compares = 0;

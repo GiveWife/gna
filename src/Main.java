@@ -30,6 +30,14 @@ public class Main {
 
         OperationTime time = new OperationTime();
 
+        time.start();
+        algoritme.sorteer();
+        time.stop();
+
+        time.verslag(algoritme.getName());
+        System.out.println("  -> Compares: " + algoritme.getCompares());
+        System.out.println("  -> Exchanges: " + algoritme.getExchanges());
+        System.out.println(" ------------------------ ");
 
     }
 

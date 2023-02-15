@@ -3,14 +3,14 @@ package oefeningen.sorteeralgoritmes;
 public class QuickSort extends AlgoritmeBase {
 
 	public QuickSort(int[] teSorteren) {
-		super(teSorteren);
+		super(teSorteren, "Quick Sort");
 	}
 	
 	@Override
 	public void sorteer() {
 		
-		hoare(teSorteren, 0, teSorteren.length-1);
-		//lomuto(teSorteren, 0, teSorteren.length-1);
+		//hoare(teSorteren, 0, teSorteren.length-1);
+		lomuto(teSorteren, 0, teSorteren.length-1);
 	}
 	
 	public void hoare(int[] array, int low, int high) {
@@ -53,23 +53,23 @@ public class QuickSort extends AlgoritmeBase {
 				array[j] = array[i];
 				array[i] = elementAti;
 				exchanges++;
-				//System.out.println("Element i en j verwisseld: " + array[j] + "," + array[i]);
+				System.out.println("Element i en j verwisseld: " + array[j] + "," + array[i]);
 			}
 			
 		}
 
-		System.out.println("low: " + low + ", high: " + high);
+		//System.out.println("low: " + low + ", high: " + high);
 		if(j-1 > low && j -1 < high) {
-			System.out.println("are equal: " + (i==j) + ", i: " + i + ", j:" + j);
+			//System.out.println("are equal: " + (i==j) + ", i: " + i + ", j:" + j);
 			int laatsteElement = array[j-1];
 			array[j-1] = pivot;
 			array[low] = laatsteElement;
 			exchanges++;
-		} else System.out.println("IF SKIPPED: " + ", i: " + i + ", j:" + j);
+		} //else System.out.println("IF SKIPPED: " + ", i: " + i + ", j:" + j);
 		
-		System.out.println("Result:");
+		//System.out.println("Result:");
 		//Main.toString(teSorteren);
-		System.out.println("\n\n\n");
+		//System.out.println("\n\n\n");
 		//j == i
 		return j;
 		

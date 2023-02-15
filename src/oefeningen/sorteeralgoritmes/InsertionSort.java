@@ -3,7 +3,7 @@ package oefeningen.sorteeralgoritmes;
 public class InsertionSort extends AlgoritmeBase {
 	
 	public InsertionSort(int[] teSorteren) {
-		super(teSorteren);
+		super(teSorteren, "Insertion Sort");
 	}
 
 	public int getCompares() {

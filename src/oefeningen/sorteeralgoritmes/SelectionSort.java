@@ -13,7 +13,7 @@ public class SelectionSort extends AlgoritmeBase {
 	private boolean isSorted = false;
 	
 	public SelectionSort(int[] teSorteren) {
-		super(teSorteren);
+		super(teSorteren, "Selection Sort");
 	}
 
 	public void sorteer() {

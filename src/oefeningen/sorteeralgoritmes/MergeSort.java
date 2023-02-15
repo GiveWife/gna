@@ -3,7 +3,7 @@ package oefeningen.sorteeralgoritmes;
 public class MergeSort extends AlgoritmeBase {
 	
 	public MergeSort(int[] teSorteren) {
-		super(teSorteren);
+		super(teSorteren, "Merge Sort");
 	}
 	
 	@Override

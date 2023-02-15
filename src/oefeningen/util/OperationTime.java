@@ -32,5 +32,9 @@ public class OperationTime {
         return seconds;
     }
 
+    public void verslag(String name) {
+        if(isDone && hasEndTime && hasStartTime)
+            System.out.println(name + " duurde " + getSeconds());
+    }
 
 }
