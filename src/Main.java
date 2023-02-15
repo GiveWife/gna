@@ -1,32 +1,51 @@
 import oefeningen.sorteeralgoritmes.*;
+import oefeningen.util.AlgorithmPerformance;
 import oefeningen.util.OperationTime;
 
 public class Main {
 
-    private final int[] toSort;
-
     public Main() {
-        this.toSort = new int[]{5,2,4,1,9,1,4,9,3,7,8,1,0,10,49,20};
     }
 
     public void run() {
 
-        AlgoritmeBase[] algoritmeBases = new AlgoritmeBase[] {
-                new InsertionSort(toSort),
-                new MergeSort(toSort),
-                new QuickSort(toSort),
-                new SelectionSort(toSort)
+        RandomArrayGenerator gen = new RandomArrayGenerator();
+        int max = 5;
+        AlgorithmPerformance[] algorithmPerformances = new AlgorithmPerformance[] {
+                new AlgorithmPerformance("Insertion Sort", max),
+                new AlgorithmPerformance("Merge Sort", max),
+                new AlgorithmPerformance("Quick Sort", max),
+                new AlgorithmPerformance("Selection Sort", max)
         };
 
-        for(int i = 0; i < algoritmeBases.length; i++) {
+        for(int i = 1; i < max; i++) {
 
-            simuleer(algoritmeBases[i]);
+            int[] toSort = gen.getRandomArray((int) Math.pow(10, i), 0, 100);
+
+            AlgoritmeBase[] algoritmeBases = new AlgoritmeBase[] {
+                    new InsertionSort(toSort),
+                    new MergeSort(toSort),
+                    new QuickSort(toSort),
+                    new SelectionSort(toSort)
+            };
+
+            for(int j = 0; j < algoritmeBases.length; j++) {
+
+                simuleer(algoritmeBases[j], algorithmPerformances[j]);
+
+            }
+
+        }
+
+        for(int i = 0; i < algorithmPerformances.length; i++) {
+
+            algorithmPerformances[i].results();
 
         }
 
     }
 
-    public void simuleer(AlgoritmeBase algoritme) {
+    public void simuleer(AlgoritmeBase algoritme, AlgorithmPerformance performanceHolder) {
 
         OperationTime time = new OperationTime();
 
@@ -34,10 +53,12 @@ public class Main {
         algoritme.sorteer();
         time.stop();
 
-        time.verslag(algoritme.getName());
-        System.out.println("  -> Compares: " + algoritme.getCompares());
-        System.out.println("  -> Exchanges: " + algoritme.getExchanges());
-        System.out.println(" ------------------------ ");
+        //time.verslag(algoritme.getName());
+        //System.out.println("  -> Compares: " + algoritme.getCompares());
+        //System.out.println("  -> Exchanges: " + algoritme.getExchanges());
+        //System.out.println(" ------------------------ ");
+
+        performanceHolder.register(algoritme.getArray().length, algoritme.getExchanges(), algoritme.getCompares(), time.getSeconds());
 
     }
 

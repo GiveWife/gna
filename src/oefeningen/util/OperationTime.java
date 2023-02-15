@@ -3,7 +3,7 @@ package oefeningen.util;
 public class OperationTime {
 
     private long startTime, endTime;
-    private double seconds;
+    private long seconds;
     private boolean hasStartTime, hasEndTime, isDone = false;
 
     public OperationTime() {
@@ -21,14 +21,14 @@ public class OperationTime {
         endTime = System.nanoTime();
         hasEndTime = true;
         isDone = true;
-        seconds = (endTime-startTime)*(0.000001);;
+        seconds = (endTime-startTime)/(1000000000);
     }
 
     public long getNano() {
         return endTime-startTime;
     }
 
-    public double getSeconds() {
+    public long getSeconds() {
         return seconds;
     }
 

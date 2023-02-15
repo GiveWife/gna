@@ -6,14 +6,6 @@ public class InsertionSort extends AlgoritmeBase {
 		super(teSorteren, "Insertion Sort");
 	}
 
-	public int getCompares() {
-		return compares;
-	}
-	
-	public int getExchanges() {
-		return exchanges;
-	}
-	
 	@Override
 	public void sorteer() {
 		//toString(teSorteren);

@@ -1,12 +1,14 @@
 package oefeningen.sorteeralgoritmes;
 
+import oefeningen.util.AlgorithmPerformance;
+
 public abstract class AlgoritmeBase {
 	
 	int compares = 0;
 	int exchanges = 0;
 	int[] teSorteren;
 	private final String name;
-	
+
 	public AlgoritmeBase(int[] teSorteren, String name) {
 		this.teSorteren = teSorteren;
 		this.name = name;
