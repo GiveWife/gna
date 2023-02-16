@@ -8,6 +8,7 @@ public abstract class AlgoritmeBase {
 	int exchanges = 0;
 	int[] teSorteren;
 	private final String name;
+	private boolean debug = false;
 
 	public AlgoritmeBase(int[] teSorteren, String name) {
 		this.teSorteren = teSorteren;
@@ -16,6 +17,23 @@ public abstract class AlgoritmeBase {
 
 	public String getName() {
 		return this.name;
+	}
+
+	public void toggledebug() {
+		if(debug) debug = false;
+		else debug = true;
+	}
+
+	public void debug(String s) {
+		if(debug) System.out.println(s);
+	}
+
+	public String getString(int[] array) {
+		String printOut = "";
+		for(int i = 0; i < array.length; i++) {
+			printOut = printOut + array[i] + ", ";
+		}
+		return printOut;
 	}
 
 	public void toString(int[] array) {

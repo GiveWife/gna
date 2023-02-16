@@ -4,74 +4,79 @@ public class QuickSort extends AlgoritmeBase {
 
 	public QuickSort(int[] teSorteren) {
 		super(teSorteren, "Quick Sort");
+		toggledebug();
 	}
 	
 	@Override
 	public void sorteer() {
 		
-		//hoare(teSorteren, 0, teSorteren.length-1);
-		lomuto(teSorteren, 0, teSorteren.length-1);
+		hoare(teSorteren, 0, teSorteren.length-1);
+		//lomuto(teSorteren, 0, teSorteren.length-1);
 	}
 	
 	public void hoare(int[] array, int low, int high) {
-		if(high <= low) return;
+		System.out.println("low: " + low + ", high: " + high);
+		if(high <= low) {
+			System.out.println("low: " + low + ", high: " + high + ", STOPPED");
+			return;
+		}
 		int pivot = partitionHoare(array, low, high);
 		//System.out.println("Sorteren van " + low + ", tot " + (pivot-1));
 		//System.out.println("Sorteren van " + (pivot+1) + ", tot " + (high));
 		hoare(array, low, pivot-1);
 		hoare(array, pivot, high);
-		
 	}
-	
+
 	public int partitionHoare(int[] array, int low, int high) {
 		int pivot = array[low];
-		
+
+		// i + 1, since low is the pivot!
 		int i = low+1, j = high;
 		
 		//System.out.println("---------- from " + low + " to " + high + " ------------");
-		//toString(array, "\n");
-		
-		while(i < j) {
-			
-			if(!(array[i] < pivot)) compares++;
-			while(i < j && array[i] < pivot) {
-				i++;
-				compares++;
-				//System.out.println("i = " + i);
-			}
-			
-			if(!(array[j] >= pivot)) compares++;
-			while(j > i && array[j] >= pivot) {
-				j--;
-				//System.out.println("j = " + j);
-				compares++;
-			}
-			
-			if(i < j) {
-				//verander de elementen
-				int elementAti = array[j];
-				array[j] = array[i];
-				array[i] = elementAti;
-				exchanges++;
-				System.out.println("Element i en j verwisseld: " + array[j] + "," + array[i]);
-			}
-			
-		}
+		toString(array, "\n");
 
-		//System.out.println("low: " + low + ", high: " + high);
-		if(j-1 > low && j -1 < high) {
-			//System.out.println("are equal: " + (i==j) + ", i: " + i + ", j:" + j);
-			int laatsteElement = array[j-1];
-			array[j-1] = pivot;
-			array[low] = laatsteElement;
-			exchanges++;
-		} //else System.out.println("IF SKIPPED: " + ", i: " + i + ", j:" + j);
-		
-		//System.out.println("Result:");
-		//Main.toString(teSorteren);
-		//System.out.println("\n\n\n");
-		//j == i
-		return j;
+		while(i <= j) {
+			// Search for an element bigger than the pivot starting from low+1
+			while (array[i] <= pivot && i < high) {
+				debug("Checking at index " + i + ": element " + array[i] + " <= " + pivot);
+				i++;
+			}
+			if(i < high) debug("Check for i stopped at index " + i + " -> " + array[i] + " > " + pivot);
+			else debug("i (" + i + ") not < " + high);
+
+			// Search for an element smaller than pivot to switch with i
+			while (array[j] > pivot && j > low) {
+				debug("Checking at index " + j + ": element " + array[j] + " > " + pivot);
+				j--;
+			}
+			debug("Check for j stopped at index " + j + " -> " + array[j] + " <= " + pivot);
+
+			// Switch both elements. If i >= j, we break from this loop
+			debug("Previous: " + getString(array));
+
+			if(i < j) {
+				int temp = array[j];
+				array[j] = array[i];
+				array[i] = temp;
+			}
+
+			debug("After:    " + getString(array));
+
+		} // Repeat this process until i >= j
+
+		// If i == j, then the algorithm stopped immediately. Pivot should stay in place
+		if(true/*i != j*/) {
+			// Switch pivot & j or i element
+			debug("Pivot change before: " + getString(array));
+			array[low] = array[j];
+			array[j] = pivot;
+			debug("Pivot change after:  " + getString(array));
+		}
+		System.out.println("\n");
+
+		if(j == low) return j++;
+		else return j;
 		
 	}
 

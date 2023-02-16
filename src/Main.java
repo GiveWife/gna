@@ -2,6 +2,8 @@ import oefeningen.sorteeralgoritmes.*;
 import oefeningen.util.AlgorithmPerformance;
 import oefeningen.util.OperationTime;
 
+import java.util.Random;
+
 public class Main {
 
     public Main() {
@@ -50,7 +52,9 @@ public class Main {
         OperationTime time = new OperationTime();
 
         time.start();
+        //algoritme.toString(algoritme.getArray(), algoritme.getName() + "  BEFORE  -> ");
         algoritme.sorteer();
+        //algoritme.toString(algoritme.getArray(), algoritme.getName() + "    -> ");
         time.stop();
 
         //time.verslag(algoritme.getName());
@@ -64,8 +68,15 @@ public class Main {
 
     public static void main(String[] args) {
 
+        System.out.println("hi");
+        RandomArrayGenerator gen = new RandomArrayGenerator();
+        AlgoritmeBase quick = new QuickSort(gen.getRandomArray(10, 1, 10));
+        quick.sorteer();
+        quick.toString(quick.getArray());
+
+
         Main main = new Main();
-        main.run();
+        //main.run();
 
     }
 
