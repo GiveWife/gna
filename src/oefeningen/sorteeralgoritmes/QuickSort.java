@@ -24,7 +24,7 @@ public class QuickSort extends AlgoritmeBase {
 		//System.out.println("Sorteren van " + low + ", tot " + (pivot-1));
 		//System.out.println("Sorteren van " + (pivot+1) + ", tot " + (high));
 		hoare(array, low, pivot-1);
-		hoare(array, pivot, high);
+		hoare(array, pivot+1, high);
 	}
 
 	public int partitionHoare(int[] array, int low, int high) {
